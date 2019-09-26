@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <!--<context:component-scan base-package="com.fish.music"/>-->
+
+    <bean id="testBean"
+          class="com.fish.test.TestBean">
+        <constructor-arg value="Kermit"/>
+    </bean>
+
+    <!--<bean id="musicClassicalBean"-->
+          <!--class="com.fish.music.ClassicalMusic"-->
+          <!--init-method="doMyInit"-->
+          <!--destroy-method="doMyDestroy"/>-->
+
+    <!--<bean id="musicRockBean"-->
+          <!--class="com.fish.music.RockMusic"-->
+          <!--factory-method="rockMusic"/>-->
+
+    <!--&lt;!&ndash;DI&ndash;&gt;-->
+    <!--<bean id="musicPlayer1"-->
+          <!--class="com.fish.music.MusicPlayer">-->
+        <!--<constructor-arg ref="musicClassicalBean"/>-->
+    <!--</bean>-->
+
+
+    <!--<bean id="musicPlayer2"-->
+          <!--class="com.fish.music.MusicPlayer">-->
+        <!--<property name="listOfMusic" ref="musicRockBean"/>-->
+        <!--<property name="name" value="IPod"/>-->
+        <!--<property name="volume" value="25"/>-->
+    <!--</bean>-->
+
+    <bean id="musicPlayer3"
+          class="com.fish.music.MusicPlayer"
+          scope="prototype">
+        <property name="listOfMusic">
+            <list>
+                <ref bean="musicClassicalBean"/>
+                <ref bean="musicRockBean"/>
+            </list>
+        </property>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
+
+
+</beans>

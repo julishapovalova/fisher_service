@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config />
+
+    <bean id="stage"
+          class="com.fish.springidol.Stage"
+          factory-method="getInstance"/>
+    <bean id="tickets"
+          class="com.fish.springidol.Ticket"
+          scope="prototype"/>
+    <bean class="com.fish.springidol.Auditorium"
+          init-method="turnOnLights"
+          destroy-method="turnOffLights">
+    </bean>
+    <bean id="saxophone" class="com.fish.springidol.Saxophone" autowire-candidate="false"/>
+    <bean id="kenny"
+          class="com.fish.springidol.Instrumentalist">
+        <!--вместо этого используется autwired-->
+        <!--<property name="instrument" ref="saxophone"/>-->
+        <property name="song" value="Jingle bells"/>
+    </bean>
+    <bean id="hank" class="com.fish.springidol.OneManBand">
+        <property name="instruments">
+            <set>
+                <ref bean="saxophone"/>
+                <ref bean="saxophone"/>
+                <ref bean="saxophone"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="harry" class="com.fish.springidol.Magician">
+        <property name="magicBox" ref="magicalBox"/>
+        <property name="magicWords" value="Bippity boppity boo"/>
+    </bean>
+    <bean id="magicalBox" class="com.fish.springidol.MagicBoxImpl"/>
+
+    <bean id="keny2" class="com.fish.springidol.Instrumentalist">
+        <property name="song" value="Bla Bla"/>
+    </bean>
+</beans>
