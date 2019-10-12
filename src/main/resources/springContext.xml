@@ -12,14 +12,14 @@
         <constructor-arg value="Kermit"/>
     </bean>
 
-    <!--<bean id="musicClassicalBean"-->
-          <!--class="com.fish.music.ClassicalMusic"-->
-          <!--init-method="doMyInit"-->
-          <!--destroy-method="doMyDestroy"/>-->
+    <bean id="musicClassicalBean"
+          class="com.fish.music.ClassicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"/>
 
-    <!--<bean id="musicRockBean"-->
-          <!--class="com.fish.music.RockMusic"-->
-          <!--factory-method="rockMusic"/>-->
+    <bean id="musicRockBean"
+          class="com.fish.music.RockMusic"
+          factory-method="rockMusic"/>
 
     <!--&lt;!&ndash;DI&ndash;&gt;-->
     <!--<bean id="musicPlayer1"-->
