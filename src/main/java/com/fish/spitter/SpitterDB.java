@@ -33,6 +33,7 @@ public class SpitterDB {
 
             stmt.execute();// run query
         } catch (SQLException e) {
+            System.out.println(e.getErrorCode());
             System.out.println("Error with connection or query");
         } finally {
             try {
